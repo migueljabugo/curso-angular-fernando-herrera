@@ -1,4 +1,4 @@
-# [Curso de angular por Fernando Herrera](https://www.udemy.com/course/angular-fernando-herrera/?couponCode=ACCAGE0923)
+# [Curso de Angular por Fernando Herrera](https://www.udemy.com/course/angular-fernando-herrera/learn/lecture/48742613)
 Signals, componentes, servicios, zoneless, mapas, autenticación, despliegues, carga de archivos, Git, GitHub y mucho más
 
 
