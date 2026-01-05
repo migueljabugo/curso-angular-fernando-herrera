@@ -5,21 +5,42 @@ export class Person {
 
     constructor(
         public name: string,
-        private address: string
+        private address?: string
         ) {}
 
 }
 
-export class Hero extends Person {
+//export class Hero extends Person {
+//    constructor(
+//        public alterEgo: string,
+//        public age: number,
+//        public realName: string
+//    ) {
+//        super( realName, 'New York, USA' );
+//    }
+//}
+
+export class Hero {
+
+    //public Person: Person;
+
     constructor(
         public alterEgo: string,
         public age: number,
-        public realName: string
+        public realname: string,
+        public person: Person
     ) {
-        super( realName, 'New York, USA' );
+        
+        //this.Person = new Person(realname);
+
     }
 }
 
-const ironman = new Hero('Ironman', 45 , 'Tony Stark');;
+
+
+
+const tony = new Person('Tony Stark', 'Malibu, California');
+
+const ironman = new Hero('Ironman', 45 , 'Tony Stark', tony);
 
 console.log( ironman );
