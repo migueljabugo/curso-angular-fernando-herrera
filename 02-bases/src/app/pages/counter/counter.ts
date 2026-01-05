@@ -9,6 +9,17 @@ export class CounterComponent {
   counter = 0;
   counterSignal = signal(0);
 
+  constructor() {
+    setInterval(() => {
+      //this.counter += 1;
+      this.counterSignal.update(current => current + 1);
+      console.log('Tick');
+    }, 1000);
+
+  }
+
+
+
   increaseBy(value: number): void {
     this.counter += value;
     this.counterSignal.update(current => current + value);
