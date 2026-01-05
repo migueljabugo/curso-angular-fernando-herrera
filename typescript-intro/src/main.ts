@@ -5,7 +5,8 @@ import './style.css'
 //import './topics/03-functions';
 //import './topics/04-homework-types';
 
-import './topics/08-classes';
+//import './topics/08-classes';
+import './topics/09-generics';
 
 let app = document.querySelector<HTMLDivElement>('#app')!;
 
