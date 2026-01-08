@@ -15,16 +15,16 @@ export class HeroComponent {
   }
 
   changeHero(): void {
-    this.name = signal('Spiderman');
-    this.age = signal(22);
+    this.name.set('Spiderman');
+    this.age.set(22);
   }
 
   resetForm(): void {
-    this.name = signal('Ironman');
-    this.age = signal(45);
+    this.name.set('Ironman');
+    this.age.set(45);
   }
 
   chageAge(): void {
-    this.age.update(current => 60);
+    this.age.set(60);
   }
 }
