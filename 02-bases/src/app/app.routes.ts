@@ -6,7 +6,7 @@ import { HeroComponent } from './pages/hero/hero';
 export const routes: Routes = [
   {
     path: '',
-    component: HeroComponent
+    component: CounterComponent
   },
   {
     path: 'hero',
