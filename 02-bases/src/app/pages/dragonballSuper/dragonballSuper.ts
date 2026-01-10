@@ -9,10 +9,10 @@ interface Character {
 
 @Component({
   imports: [NgClass],
-  templateUrl: './dragonball.html',
-  styleUrl: './dragonball.css',
+  templateUrl: './dragonballSuper.html',
+  styleUrl: './dragonballSuper.css',
 })
-export class Dragonball {
+export class DragonballSuper {
 
   name = signal<string>('');
   power = signal<number>(0);
@@ -20,7 +20,8 @@ export class Dragonball {
 
 
   characters = signal<Character[]>([
-    { id: 1, name: 'Goku', power: 9001 }
+    { id: 1, name: 'Goku', power: 9001 },
+    { id: 2, name: 'Vegeta', power: 8500 }
   ]);
 
   //powerClasses = computed(() => {
