@@ -20,6 +20,7 @@ export class Dragonball {
     { id: 3, name: 'Gohan', power: 7000 },
     { id: 4, name: 'Piccolo', power: 6500 },
     { id: 5, name: 'Frieza', power: 12000 },
+    { id: 6, name: 'Yamcha', power: 520 }
   ]);
 
   //powerClasses = computed(() => {
