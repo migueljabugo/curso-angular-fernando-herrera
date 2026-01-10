@@ -1,5 +1,4 @@
 import { Component, computed, signal } from '@angular/core';
-import { NgClass } from "@angular/common";
 
 interface Character {
   id: number;
@@ -8,7 +7,7 @@ interface Character {
 }
 
 @Component({
-  imports: [NgClass],
+  imports: [],
   templateUrl: './dragonball.html',
   styleUrl: './dragonball.css',
 })

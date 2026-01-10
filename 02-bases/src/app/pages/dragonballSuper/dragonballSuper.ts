@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { NgClass } from "@angular/common";
 import { CharacterList } from "../../components/dragonball/character-list/character-list";
 import { CharacterAdd } from '../../components/dragonball/character-add/character-add';
 import { ServiceNameService } from '../../services/dragonball.service';
@@ -11,7 +10,7 @@ interface Character {
 }
 
 @Component({
-  imports: [NgClass, CharacterList, CharacterAdd],
+  imports: [CharacterList, CharacterAdd],
   templateUrl: './dragonballSuper.html',
   styleUrl: './dragonballSuper.css',
 })
