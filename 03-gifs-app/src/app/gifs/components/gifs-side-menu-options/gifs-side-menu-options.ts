@@ -4,7 +4,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'gifs-side-menu-options',
   imports: [],
   templateUrl: './gifs-side-menu-options.html',
-  styleUrl: './gifs-side-menu-options.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrl: './gifs-side-menu-options.css'
 })
 export class GifsSideMenuOptions { }
