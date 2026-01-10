@@ -1,7 +1,8 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NgClass } from "@angular/common";
 import { CharacterList } from "../../components/dragonball/character-list/character-list";
 import { CharacterAdd } from '../../components/dragonball/character-add/character-add';
+import { ServiceNameService } from '../../services/dragonball.service';
 
 interface Character {
   id: number;
@@ -16,14 +17,10 @@ interface Character {
 })
 export class DragonballSuper {
 
-  characters = signal<Character[]>([
-    { id: 1, name: 'Goku', power: 9001 },
-    { id: 2, name: 'Vegeta', power: 8500 }
-  ]);
+  //Forma tradicional
+  //constructor(public dragonballService: ServiceNameService) { }
 
-  addCharacter(newCharacter: Character) {
-    this.characters.update(chars => [...chars, newCharacter]);
-  }
-
+  //Forma con inject
+  public dragonbalService = inject(ServiceNameService);
 
 }
