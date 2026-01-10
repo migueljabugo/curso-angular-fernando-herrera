@@ -1,0 +1,12 @@
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { GifsSideMenuHeader } from '../../components/gifs-side-menu-header/gifs-side-menu-header';
+import { GifsSideMenuOptions } from '../../components/gifs-side-menu-options/gifs-side-menu-options';
+
+@Component({
+  selector: 'gifs-side-menu',
+  imports: [GifsSideMenuHeader, GifsSideMenuOptions],
+  templateUrl: './gifs-side-menu.html',
+  styleUrl: './gifs-side-menu.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class GifsSideMenu { }
