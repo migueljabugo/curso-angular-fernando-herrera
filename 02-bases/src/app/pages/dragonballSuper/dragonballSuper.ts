@@ -21,11 +21,9 @@ export class DragonballSuper {
     { id: 2, name: 'Vegeta', power: 8500 }
   ]);
 
-  //powerClasses = computed(() => {
-  //  return {
-  //    'text-danger': true
-  //  }
-  //});
+  addCharacter(newCharacter: Character) {
+    this.characters.update(chars => [...chars, newCharacter]);
+  }
 
 
 }
