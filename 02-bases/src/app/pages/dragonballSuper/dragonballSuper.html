@@ -26,28 +26,13 @@
             (click)="addCharacter()">Agregar</button>
   </div>
 
-  <div class="col-12 col-sm-6">
-    <h3>Personajes</h3>
-    <ul>
-      @for (character of characters(); track character.id; let $idx = $index)
-      {
-        @if (character.power > 1000)
-        {
-          <li>
-            <span>{{ $idx + 1 }} {{character.name}}</span>
-            <strong
-            [class.text-danger]="character.power > 9000"
-            [class.text-primary]="character.power <= 9000" >
-            <!-- [ngClass]="powerClasses()" -->
 
-              ({{character.power}})</strong>
-          </li>
-        }
-        @else{
-          <li>Sin poder suficiente</li>
-        }
-      }
-    </ul>
+  <div class="col-12 col-sm-6">
+
+
+    <dragonball-character-list [characters]="characters()"/>
+
+
   </div>
 
 </section>
