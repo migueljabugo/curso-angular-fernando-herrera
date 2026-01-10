@@ -1,6 +1,7 @@
 import { Component, computed, signal } from '@angular/core';
 import { NgClass } from "@angular/common";
 import { CharacterList } from "../../components/dragonball/character-list/character-list";
+import { CharacterAdd } from '../../components/dragonball/character-add/character-add';
 
 interface Character {
   id: number;
@@ -9,16 +10,11 @@ interface Character {
 }
 
 @Component({
-  imports: [NgClass, CharacterList],
+  imports: [NgClass, CharacterList, CharacterAdd],
   templateUrl: './dragonballSuper.html',
   styleUrl: './dragonballSuper.css',
 })
 export class DragonballSuper {
-
-  name = signal<string>('');
-  power = signal<number>(0);
-
-
 
   characters = signal<Character[]>([
     { id: 1, name: 'Goku', power: 9001 },
@@ -31,20 +27,5 @@ export class DragonballSuper {
   //  }
   //});
 
-  addCharacter() {
-    if (this.name() === '' || this.power() <= 0) return;
 
-    const newCharacter: Character = {
-      id: this.characters().map(x => x.id).sort((a, b) => b - a)[0] + 1,
-      name: this.name(),
-      power: this.power()
-    };
-    this.characters.update(chars => [...chars, newCharacter]);
-    this.resetFields();
-  }
-
-  resetFields() {
-    this.name.set('');
-    this.power.set(0);
-  }
 }

@@ -8,6 +8,7 @@ import type { Character } from '../../../interfaces/character.interface';
 })
 export class CharacterList {
 
+  listName = input.required<string>();
   characters = input.required<Character[]>();
 
 
