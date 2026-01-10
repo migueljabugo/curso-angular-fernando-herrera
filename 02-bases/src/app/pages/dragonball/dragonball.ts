@@ -35,12 +35,19 @@ export class Dragonball {
   //});
 
   addCharacter() {
+    if (this.name() === '' || this.power() <= 0) return;
+
     const newCharacter: Character = {
       id: this.characters().map(x => x.id).sort((a, b) => b - a)[0] + 1,
       name: this.name(),
       power: this.power()
     };
     this.characters.update(chars => [...chars, newCharacter]);
+    this.resetFields();
   }
 
+  resetFields() {
+    this.name.set('');
+    this.power.set(0);
+  }
 }
