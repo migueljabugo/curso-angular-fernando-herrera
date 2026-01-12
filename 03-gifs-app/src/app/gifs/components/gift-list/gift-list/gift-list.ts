@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { GiftListItem } from "../gift-list-item/gift-list-item";
 
 
@@ -12,5 +12,6 @@ import { GiftListItem } from "../gift-list-item/gift-list-item";
 })
 export class GiftList {
 
+  urls = input.required<string[]>();
 
  }

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 @Component({
   selector: 'gift-list-item',
@@ -9,6 +9,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 })
 export class GiftListItem {
 
-  src: string = 'https://flowbite.s3.amazonaws.com/docs/gallery/square/image.jpg';
+  url = input.required<string>();
 
  }
