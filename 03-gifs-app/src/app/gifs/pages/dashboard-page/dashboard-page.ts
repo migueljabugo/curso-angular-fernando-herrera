@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from "@angular/router";
-import { GifsSideMenu } from '../../components/gifs-side-menu/gifs-side-menu';
+import { GifsSideMenu } from '../../components/side-menu/gifs-side-menu/gifs-side-menu';
 
 @Component({
   selector: 'app-dashboard-page',
