@@ -2,7 +2,7 @@
 <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
 
   @for (item of urls(); track $index) {
-    <gift-list-item [url]="item" />
+    <gift-list-item [gift]="item" />
   }
 
 </div>

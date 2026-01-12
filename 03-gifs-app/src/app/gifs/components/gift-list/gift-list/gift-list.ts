@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { GiftListItem } from "../gift-list-item/gift-list-item";
+import { Gift } from 'src/app/gifs/interfaces/gift.interface';
 
 
 
@@ -12,6 +13,6 @@ import { GiftListItem } from "../gift-list-item/gift-list-item";
 })
 export class GiftList {
 
-  urls = input.required<string[]>();
+  urls = input.required<Gift[]>();
 
  }
