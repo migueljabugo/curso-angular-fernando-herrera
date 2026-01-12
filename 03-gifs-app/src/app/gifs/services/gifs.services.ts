@@ -37,4 +37,20 @@ export class GifService {
       this.trendingGifs.set( gifts );
     });
   }
+
+  searchGifs(query: string) {
+    this.http.get<GiphyResponse>(`${environment.giphyUrl}/gifs/search`, {
+      params: {
+        api_key: environment.giphyApiKey,
+        limit: 20,
+        offset: 0,
+        q: query,
+      }
+    }).subscribe( (resp) => {
+
+      const gifts = GifMapper.mapGiphyItemToGiftArray( resp.data );
+      console.log({gifts});
+
+    });
+  }
 }
