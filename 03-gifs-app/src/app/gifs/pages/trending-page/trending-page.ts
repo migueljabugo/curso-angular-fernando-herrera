@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { GiftList } from '../../components/gift-list/gift-list/gift-list';
 
 const imageUrls: string[] = [
@@ -25,6 +25,6 @@ const imageUrls: string[] = [
 })
 export default class TrendingPage {
 
-  imageUrls = imageUrls;
+  imageUrls = signal(imageUrls);
 
  }
