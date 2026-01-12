@@ -13,6 +13,6 @@ import { Gift } from 'src/app/gifs/interfaces/gift.interface';
 })
 export class GiftList {
 
-  urls = input.required<Gift[]>();
+  gifs = input.required<Gift[]>();
 
  }
