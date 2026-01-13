@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { GiftList } from '../../components/gift-list/gift-list/gift-list';
 import { GifService } from '../../services/gifs.services';
 
@@ -22,7 +22,6 @@ import { GifService } from '../../services/gifs.services';
   imports: [GiftList],
   templateUrl: './trending-page.html',
   styleUrl: './trending-page.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class TrendingPage {
 

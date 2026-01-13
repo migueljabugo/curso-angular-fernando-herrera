@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { GiftListItem } from "../gift-list-item/gift-list-item";
 import { Gift } from 'src/app/gifs/interfaces/gift.interface';
 
@@ -9,7 +9,6 @@ import { Gift } from 'src/app/gifs/interfaces/gift.interface';
   imports: [GiftListItem],
   templateUrl: './gift-list.html',
   styleUrl: './gift-list.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GiftList {
 
