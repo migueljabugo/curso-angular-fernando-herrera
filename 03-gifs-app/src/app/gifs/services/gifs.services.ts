@@ -74,4 +74,12 @@ export class GifService {
 //
 //    });
   }
+
+  getHistoryGifs( query: string ): Gift[] {
+    return this.searchHistory()[query] ?? [];
+  }
+
+
+
+
 }
