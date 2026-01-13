@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { GiftList } from '../../components/gift-list/gift-list/gift-list';
+import { Component, ElementRef, inject, viewChild } from '@angular/core';
+//import { GiftList } from '../../components/gift-list/gift-list/gift-list';
 import { GifService } from '../../services/gifs.services';
 
 //const imageUrls: string[] = [
@@ -19,7 +19,7 @@ import { GifService } from '../../services/gifs.services';
 
 @Component({
   selector: 'app-trending-page',
-  imports: [GiftList],
+  //imports: [GiftList],
   templateUrl: './trending-page.html',
   styleUrl: './trending-page.css',
 })
@@ -29,6 +29,13 @@ export default class TrendingPage {
 
   gifService = inject(GifService);
 
+  scrollDivRef = viewChild<ElementRef>('groupDiv');
 
+  onScroll(event: Event){
+    const scrollDiv = this.scrollDivRef()?.nativeElement;
+
+    console.log(scrollDiv);
+
+  }
 
  }

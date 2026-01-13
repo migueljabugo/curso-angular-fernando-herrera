@@ -13,7 +13,7 @@ const loadFromLocalStorage = () => {
   const gifsFromLocalStorage = localStorage.getItem(GIF_KEY) ?? '{}';
 
   const gifs = JSON.parse(gifsFromLocalStorage);
-  console.log(gifs);
+  //console.log(gifs);
   return gifs;
 
 }
