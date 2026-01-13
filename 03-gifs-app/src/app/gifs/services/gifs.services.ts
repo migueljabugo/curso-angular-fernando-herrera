@@ -1,10 +1,22 @@
 import { HttpClient } from '@angular/common/http';
-import { computed, inject, Injectable, signal } from '@angular/core';
+import { computed, effect, inject, Injectable, signal } from '@angular/core';
 import { environment } from '@environments/environment';
 import type { GiphyResponse } from '../interfaces/Giphy.interface';
 import { Gift } from '../interfaces/gift.interface';
 import { GifMapper } from '../mapper/gif.mapper';
 import { map, tap, Observable } from 'rxjs';
+
+const GIF_KEY = 'gifs';
+
+const loadFromLocalStorage = () => {
+
+  const gifsFromLocalStorage = localStorage.getItem(GIF_KEY) ?? '{}';
+
+  const gifs = JSON.parse(gifsFromLocalStorage);
+  console.log(gifs);
+  return gifs;
+
+}
 
 @Injectable({providedIn: 'root'})
 export class GifService {
@@ -14,13 +26,18 @@ export class GifService {
   trendingGifs = signal<Gift[]>([]);
   trendingGifsLoading = signal<boolean>(true);
 
-  searchHistory = signal<Record<string, Gift[]>>({});
+
+  searchHistory = signal<Record<string, Gift[]>>(loadFromLocalStorage());
   searchHistoryKeys = computed(()=> Object.keys(this.searchHistory()));
 
   constructor() {
     this.loadTrendingGifs();
-
   }
+
+  saveGifsToLocalStorage = effect(() => {
+    const historyString = JSON.stringify(this.searchHistory());
+    localStorage.setItem(GIF_KEY, historyString);
+  });
 
   loadTrendingGifs() {
     //https://api.giphy.com/v1/gifs/trending?api_key={giphyApiKey}&limit=25&offset=0&rating=g
@@ -36,7 +53,6 @@ export class GifService {
       console.log('Trending gifs loaded');
 
       const gifts = GifMapper.mapGiphyItemToGiftArray( resp.data );
-      //console.log(gifts);
       this.trendingGifsLoading.set( false );
       this.trendingGifs.set( gifts );
     });
@@ -58,8 +74,6 @@ export class GifService {
         //Historial
         tap(items => {
           this.searchHistory.update(history =>{
-            console.log(history);
-
             return ({
               ...history,
               [query.toLocaleLowerCase()]: items
