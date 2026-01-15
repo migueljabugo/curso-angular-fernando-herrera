@@ -1,10 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-home-page',
+  selector: 'app-by-capital-page',
   imports: [],
-  templateUrl: './home-page.html',
-  styleUrl: './home-page.css',
+  templateUrl: './by-capital-page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomePage { }
+export class ByCapital { }
