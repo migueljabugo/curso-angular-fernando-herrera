@@ -1,14 +1,13 @@
-import { Country } from './../../interfaces/country.interface';
-import { DecimalPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, resource } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import countryRoutes from '../../country.routes';
 import { firstValueFrom } from 'rxjs';
 import { CountryService } from '../../services/country';
+import { NotFound } from "../../../shared/components/not-found/not-found";
+import { CountryInformation } from "./country-information/country-information";
 
 @Component({
   selector: 'app-country-page',
-  imports: [DecimalPipe],
+  imports: [NotFound, CountryInformation],
   templateUrl: './country-page.html',
   styleUrl: './country-page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
