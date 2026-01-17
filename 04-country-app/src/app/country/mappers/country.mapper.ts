@@ -15,6 +15,6 @@ export class CountryMapper {
   }
 
   static fromRestCountryArrayToCountryArray(restCountries: RESTCountry[]): Country[] {
-    return restCountries.map(restCountry => this.fromRestCountryToCountry(restCountry));
+    return restCountries.map(restCountry => CountryMapper.fromRestCountryToCountry(restCountry));
   }
 }
