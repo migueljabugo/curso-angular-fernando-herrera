@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterLinkActive, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'country-top-menu',
-  imports: [],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './top-menu.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
