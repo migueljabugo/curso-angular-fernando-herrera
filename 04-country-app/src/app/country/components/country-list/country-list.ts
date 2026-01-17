@@ -14,4 +14,10 @@ export class CountryList {
 
   countries = input.required<Country[]>();
 
+  errorMessage = input<string | null>();
+  isLoading = input<boolean>(false);
+  isEmpty = input<boolean>(false);
+
+
+
  }

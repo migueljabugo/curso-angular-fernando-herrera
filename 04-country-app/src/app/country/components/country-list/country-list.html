@@ -28,8 +28,32 @@
           <td><a [routerLink]="['/country/by', country.cca2]"
             class="link link-primary">Más información</a></td>
         </tr>
-
       }
+
+      @if(errorMessage()){
+        <tr>
+          <td colspan="8" class="text-center">
+            {{errorMessage()}}
+          </td>
+        </tr>
+      }
+
+      @if(countries().length===0 && !isLoading()){
+        <tr>
+          <td colspan="8" class="text-center">
+            No se encontraron resultados
+          </td>
+        </tr>
+      }
+
+      @if(isLoading()){
+        <tr>
+          <td colspan="8" class="text-center">
+            Cargando...
+          </td>
+        </tr>
+      }
+
     </tbody>
   </table>
 </section>

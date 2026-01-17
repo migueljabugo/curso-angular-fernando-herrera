@@ -7,7 +7,10 @@
   <h3 class="mt-4">{{countryResource.error()?.message}}</h3>
 }
 @if(countryResource.hasValue()) {
-  <country-list [countries]="countryResource.value()"/>
+  <country-list
+    [countries]="countryResource.value()"
+    [errorMessage]="countryResource.error()?.message"
+    [isLoading]="countryResource.isLoading()" />
 }
 
 
