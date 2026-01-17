@@ -1,22 +1,68 @@
-<div class="row mt-5">
-    <div class="col-12 col-md-8">
-      <h3>{{ country().name }}</h3>
-      <ul class="list-group">
-        <li class="list-group-item">
-          <strong>Población:</strong> {{ country().population | number }}
-        </li>
-        <li class="list-group-item">
-          <strong>Código:</strong> {{ country().cca2 }}
-        </li>
-        <li class="list-group-item">
-          <strong>Capital:</strong> {{ country().capital }}
-        </li>
-      </ul>
+<div class="stats shadow">
+  <div class="stat">
+    <div class="stat-figure text-secondary">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512"><path fill="currentColor" d="M256 256a112 112 0 1 0-112-112a112 112 0 0 0 112 112m0 32c-69.42 0-208 42.88-208 128v64h416v-64c0-85.12-138.58-128-208-128"/></svg>
     </div>
-    <div class="col-12 col-md-4">
-      <img
-        [src]="country().FlagSvg"
-        [alt]="country().name"
-        class="img-thumbnail max-h-60">
-    </div>
+    <div class="stat-title">Población</div>
+    <div class="stat-value">{{ country().population | number }}</div>
+    <!--<div class="stat-desc">Jan 1st - Feb 1st</div>-->
   </div>
+
+  <div class="stat">
+    <div class="stat-figure text-secondary">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        class="inline-block h-8 w-8 stroke-current"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+        ></path>
+      </svg>
+    </div>
+    <div class="stat-title">Nombre</div>
+    <div class="stat-value">{{ country().name }}</div>
+    <div class="stat-desc">{{country().region }}({{country().subregion }})</div>
+  </div>
+
+  <div class="stat">
+    <div class="stat-figure text-secondary">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        class="inline-block h-8 w-8 stroke-current"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
+        ></path>
+      </svg>
+    </div>
+    <div class="stat-title">Capital</div>
+    <div class="stat-value">{{ country().capital }}</div>
+    <!--<div class="stat-desc">↘︎ 90 (14%)</div>-->
+  </div>
+</div>
+
+
+<section class="diff aspect-video">
+  <div class="diff-item-1">
+    <img
+      [src]="country().FlagSvg"
+      [alt]="country().name">
+  </div>
+  <div class="diff-item-2">
+    <img
+      class="blur brightness-75"
+      [src]="country().FlagSvg"
+      [alt]="country().name">
+  </div>
+  <div class="diff-resizer"></div>
+</section>
