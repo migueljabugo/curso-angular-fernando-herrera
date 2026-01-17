@@ -21,7 +21,7 @@ export class CountryService {
       .pipe(
         map(CountryMapper.fromRestCountryArrayToCountryArray),
         catchError(error => {
-          console.log('', error);
+
           return throwError(() => new Error('No se pudo obtener resultados'));
         })
      );

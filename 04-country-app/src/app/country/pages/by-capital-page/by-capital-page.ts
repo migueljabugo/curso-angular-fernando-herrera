@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, resource, signal } from '@angular/core';
 import { SearchInput } from '../../components/search-input/search-input';
 import { CountryList } from '../../components/country-list/country-list';
 import { CountryService } from '../../services/country';
 import { RESTCountry } from '../../interfaces/rest-countries.interface';
 import { Country } from '../../interfaces/country.interface';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-by-capital-page',
@@ -14,8 +15,20 @@ import { Country } from '../../interfaces/country.interface';
 export class ByCapital {
 
   countryService = inject(CountryService);
+  query = signal('');
 
-  isLoading = signal(false);
+  countryResource = resource({
+    params: ()=> ({ query: this.query() }),
+    loader: async({params}) => {
+      if(!params.query) return [];
+
+      return await firstValueFrom(this.countryService.searchByCapital(params.query));
+
+    },
+  });
+
+
+  /*isLoading = signal(false);
   isError = signal<string | null>(null);
   countries = signal<Country[]>([]);
 
@@ -38,7 +51,7 @@ export class ByCapital {
         }
 
       });
-  }
+  }*/
 
 
  }
