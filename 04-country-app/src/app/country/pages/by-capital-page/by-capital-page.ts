@@ -2,8 +2,6 @@ import { ChangeDetectionStrategy, Component, inject, resource, signal } from '@a
 import { SearchInput } from '../../components/search-input/search-input';
 import { CountryList } from '../../components/country-list/country-list';
 import { CountryService } from '../../services/country';
-import { RESTCountry } from '../../interfaces/rest-countries.interface';
-import { Country } from '../../interfaces/country.interface';
 import { firstValueFrom } from 'rxjs';
 
 @Component({

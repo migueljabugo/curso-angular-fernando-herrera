@@ -1,4 +1,12 @@
 
-<country-search-input placeholder="Buscar pais" />
+<country-search-input
+  placeholder="Buscar pais"
+  (value)="query.set($event)" />
 
-<country-list [countries]="[]"/>
+
+@if( countryResource.error()){
+  <h3 class="mt-4">{{countryResource.error()?.message}}</h3>
+}
+@if(countryResource.hasValue()) {
+  <country-list [countries]="countryResource.value()"/>
+}
