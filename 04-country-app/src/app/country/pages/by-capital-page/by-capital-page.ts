@@ -26,11 +26,17 @@ export class ByCapital {
     this.isError.set(null);
 
     this.countryService.searchByCapital(value)
-      .subscribe(countries =>
-        {
-          this.isLoading.set(false);
+      .subscribe({
+        next: (countries) => {
           this.countries.set(countries);
-          console.log(countries)
+          this.isLoading.set(false);
+        },
+        error: (error) => {
+          this.isLoading.set(false);
+          this.countries.set([]);
+          this.isError.set(error);
+        }
+
       });
   }
 
