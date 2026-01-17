@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RESTCountry } from '../../interfaces/rest-countries.interface';
 import { RouterLink } from "@angular/router";
+import { Country } from '../../interfaces/country.interface';
 
 @Component({
   selector: 'country-list',
@@ -11,6 +12,6 @@ import { RouterLink } from "@angular/router";
 })
 export class CountryList {
 
-  countries = input.required<RESTCountry[]>();
+  countries = input.required<Country[]>();
 
  }

@@ -1,0 +1,20 @@
+import { Country } from "../interfaces/country.interface";
+import { RESTCountry } from "../interfaces/rest-countries.interface";
+
+export class CountryMapper {
+
+  static fromRestCountryToCountry(restCountry: RESTCountry): Country {
+    return {
+      cca2: restCountry.cca2,
+      name: restCountry.name.common,
+      capital: restCountry.capital.join(', '),
+      population: restCountry.population,
+      Flag: restCountry.flag,
+      FlagSvg: restCountry.flags.svg,
+    };
+  }
+
+  static fromRestCountryArrayToCountryArray(restCountries: RESTCountry[]): Country[] {
+    return restCountries.map(restCountry => this.fromRestCountryToCountry(restCountry));
+  }
+}
