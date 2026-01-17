@@ -1,1 +1,25 @@
-<p>country-page works!</p>,
+
+@if (countryResource.value(); as country) {
+  <div class="row mt-5">
+    <div class="col-12 col-md-8">
+      <h3>{{ country.name }}</h3>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <strong>Población:</strong> {{ country.population | number }}
+        </li>
+        <li class="list-group-item">
+          <strong>Código:</strong> {{ country.cca2 }}
+        </li>
+        <li class="list-group-item">
+          <strong>Capital:</strong> {{ country.capital }}
+        </li>
+      </ul>
+    </div>
+    <div class="col-12 col-md-4">
+      <img
+        [src]="country.FlagSvg"
+        [alt]="country.name"
+        class="img-thumbnail max-h-60">
+    </div>
+  </div>
+}
