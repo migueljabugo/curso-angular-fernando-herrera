@@ -14,6 +14,8 @@ export class CountryService {
 
   private http = inject(HttpClient);
   private queryCacheCapital = new Map<string, Country[]>();
+  private queryCacheCountry = new Map<string, Country[]>();
+
 
 
 
@@ -40,9 +42,16 @@ export class CountryService {
   searchByCountry( query: string) {
     query = query.toLocaleLowerCase();
 
+    if (this.queryCacheCountry.has(query)) {
+      return of(this.queryCacheCountry.get(query)!);
+    }
+
+    console.log('Obteniendo info', query);
+
     return this.http.get<RESTCountry[]>(`${API_URL}/name/${query}`)
       .pipe(
         map(CountryMapper.fromRestCountryArrayToCountryArray),
+        tap((coutries) => this.queryCacheCountry.set(query, coutries)),
         catchError(error => {
 
           return throwError(() => new Error('No se pudo obtener resultados'));
