@@ -15,8 +15,7 @@ export class CountryService {
   private http = inject(HttpClient);
   private queryCacheCapital = new Map<string, Country[]>();
   private queryCacheCountry = new Map<string, Country[]>();
-
-
+  private queryCacheRegion = new Map<string, Country[]>();
 
 
   searchByCapital( query: string) {
@@ -73,4 +72,24 @@ export class CountryService {
      );
   }
 
+
+  searchByRegion( query: string) {
+    query = query.toLocaleLowerCase();
+
+    if (this.queryCacheRegion.has(query)) {
+      return of(this.queryCacheRegion.get(query)!);
+    }
+
+    console.log('Obteniendo info', query);
+
+    return this.http.get<RESTCountry[]>(`${API_URL}/region/${query}`)
+      .pipe(
+        map(CountryMapper.fromRestCountryArrayToCountryArray),
+        tap((coutries) => this.queryCacheRegion.set(query, coutries)),
+        catchError(error => {
+
+          return throwError(() => new Error('No se pudo obtener resultados'));
+        })
+     );
+  }
 }
