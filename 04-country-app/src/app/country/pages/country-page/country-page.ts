@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject, resource } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
-import { CountryService } from '../../services/country';
+import { CountryService } from '../../services/country.service';
 import { NotFound } from "../../../shared/components/not-found/not-found";
 import { CountryInformation } from "./country-information/country-information";
 

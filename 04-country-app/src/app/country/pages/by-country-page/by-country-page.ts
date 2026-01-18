@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, resource, signal } from '@angular/core';
 import { CountryList } from '../../components/country-list/country-list';
 import { SearchInput } from '../../components/search-input/search-input';
-import { CountryService } from '../../services/country';
+import { CountryService } from '../../services/country.service';
 import { firstValueFrom } from 'rxjs';
 
 @Component({
