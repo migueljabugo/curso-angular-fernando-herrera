@@ -10,8 +10,25 @@ import { ChangeDetectionStrategy, Component, output, effect, signal, computed, i
 export class SearchInput {
 
   placeholder = input<string>("Buscar");
+  debounceTime = input(500);
 
   value = output<string>();
+
+  inputValue = signal<string>('');
+
+  debounceEffect = effect((onCleanup) => {
+    const value = this.inputValue();
+
+    const timeout = setTimeout(() => {
+      this.value.emit(value);
+    }, this.debounceTime());
+
+    onCleanup(() => {
+      clearTimeout(timeout);
+    });
+  });
+
+
 
 
  }

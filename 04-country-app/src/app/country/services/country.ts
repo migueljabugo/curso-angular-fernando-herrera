@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { RESTCountry } from '../interfaces/rest-countries.interface';
-import { catchError, delay, map, throwError } from 'rxjs';
+import { catchError, delay, map, of, throwError } from 'rxjs';
 import { CountryMapper } from '../mappers/country.mapper';
 
 const API_URL = 'https://restcountries.com/v3.1';
@@ -16,6 +16,9 @@ export class CountryService {
 
   searchByCapital( query: string) {
     query = query.toLocaleLowerCase();
+    console.log("Emitiendo valor",query);
+
+    return of([]);
 
     return this.http.get<RESTCountry[]>(`${API_URL}/capital/${query}`)
       .pipe(
