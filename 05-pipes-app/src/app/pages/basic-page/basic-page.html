@@ -23,3 +23,54 @@
     <div class="stat-desc">{{fullName()}}</div>
   </div>
 </div>
+
+<div class=" divider"></div>
+
+<div class="pt-2 stats shadow w-full">
+  <div class="stat place-items-center">
+    <div class="stat-title">Date Pipe</div>
+    <div class="stat-value">{{customDate() | date }}</div>
+    <div class="stat-desc">{{customDate() }}</div>
+  </div>
+
+  <div class="stat place-items-center">
+    <div class="stat-title">Date | long | GMT-6</div>
+    <div class="stat-value text-secondary">{{customDate() | date:"long" : "GMT-6"}}</div>
+    <div class="stat-desc text-secondary">{{customDate()}}</div>
+  </div>
+</div>
+
+<div class=" divider"></div>
+
+<div class="pt-2 stats shadow w-full">
+  <div class="stat place-items-center">
+    <div class="stat-title">DAte:'yyyy MM'</div>
+    <div class="stat-value">{{customDate() | date:'yyyy MM'}}</div>
+    <div class="stat-desc">{{customDate()}}</div>
+  </div>
+  <div class="stat place-items-center">
+    <div class="stat-title">Date | short | GMT-6</div>
+    <div class="stat-value">{{customDate() | date:"short" : "GMT-6"}}</div>
+    <div class="stat-desc">{{customDate()}}</div>
+  </div>
+</div>
+
+<div class=" divider"></div>
+
+<div class="pt-2 stats shadow w-full">
+  <div class="stat place-items-center">
+    <div class="stat-title">DAte:'dd/MM/yyyy'</div>
+    <div class="stat-value">{{customDate() | date:'dd/MM/yyyy'}}</div>
+    <div class="stat-desc">{{customDate()}}</div>
+  </div>
+  <div class="stat place-items-center">
+    <div class="stat-title">DAte:'HH:mm:ss'</div>
+    <div class="stat-value">{{customDate() | date:'HH:mm:ss'}}</div>
+    <div class="stat-desc">{{customDate()}}</div>
+  </div>
+  <div class="stat place-items-center">
+    <div class="stat-title">DAte:'EEEE d, MMMM'</div>
+    <div class="stat-value">{{customDate() | date:'EEEE d, MMMM'}}</div>
+    <div class="stat-desc">{{customDate()}}</div>
+  </div>
+</div>
