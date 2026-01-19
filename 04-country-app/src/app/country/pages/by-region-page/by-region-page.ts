@@ -6,6 +6,19 @@ import { firstValueFrom } from 'rxjs';
 import { CountryService } from '../../services/country.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
+function validateQueryParam (queryParam: string) : Region {
+  const validRegions: Record<string, Region> = {
+    'africa': 'Africa',
+    'americas': 'Americas',
+    'asia': 'Asia',
+    'europe': 'Europe',
+    'oceania': 'Oceania',
+    'antarctic': 'Antarctic'
+  };
+
+  return validRegions[queryParam] ?? 'Europe';
+}
+
 @Component({
   selector: 'app-by-region-page',
   imports: [CountryList],
@@ -32,7 +45,7 @@ export class ByRegionPage {
     'Antarctic'
   ];
 
-  selectedRegion = signal<Region|null>(this.queryParam as Region ?? null);
+  selectedRegion = signal<Region | null>(validateQueryParam(this.queryParam));
 
   selectRegion(region: Region) {
     this.selectedRegion.set(region);
