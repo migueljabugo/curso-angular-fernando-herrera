@@ -4,6 +4,7 @@ import { CountryList } from '../../components/country-list/country-list';
 import { Region } from '../../interfaces/region.type';
 import { firstValueFrom } from 'rxjs';
 import { CountryService } from '../../services/country.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-by-region-page',
@@ -16,6 +17,12 @@ export class ByRegionPage {
 
   countryService = inject(CountryService);
 
+  activatedRoute = inject(ActivatedRoute);
+
+  router = inject(Router);
+
+  queryParam = this.activatedRoute.snapshot.queryParamMap.get('query') ?? '';
+
   public regions: Region[] = [
     'Africa',
     'Americas',
@@ -25,7 +32,7 @@ export class ByRegionPage {
     'Antarctic'
   ];
 
-  selectedRegion = signal<Region|null>(null);
+  selectedRegion = signal<Region|null>(this.queryParam as Region ?? null);
 
   selectRegion(region: Region) {
     this.selectedRegion.set(region);
@@ -35,6 +42,12 @@ export class ByRegionPage {
     params: ()=> ({ query: this.selectedRegion() }),
     loader: async({params}) => {
       if(!params.query) return [];
+
+      this.router.navigate(['/country/by-region'], {
+        queryParams: {
+          query: params.query
+        }
+      });
 
       return await firstValueFrom(this.countryService.searchByRegion(params.query));
 
