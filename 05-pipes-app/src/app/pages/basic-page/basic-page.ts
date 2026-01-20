@@ -1,5 +1,6 @@
 import { LowerCasePipe, UpperCasePipe, TitleCasePipe, DatePipe } from '@angular/common'
-import { ChangeDetectionStrategy, Component, effect, isSignal, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, isSignal, LOCALE_ID, signal } from '@angular/core';
+import { availableLocales, LocaleService } from '../../services/locale.service';
 
 @Component({
   selector: 'app-basic-page',
@@ -13,6 +14,11 @@ import { ChangeDetectionStrategy, Component, effect, isSignal, signal } from '@a
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class BasicPage {
+
+  localeService = inject(LocaleService);
+  currentLocale = inject(LOCALE_ID);
+
+  name = signal('miguel');
 
   nameLower = signal('miguel angel');
   nameUpper = signal('MIGUEL ANGEL');
@@ -30,4 +36,9 @@ export default class BasicPage {
     });
   })
 
+
+  changeLocale(locale: availableLocales){
+    console.log('changing to', locale)
+    this.localeService.changeLocale(locale);
+  }
 }
