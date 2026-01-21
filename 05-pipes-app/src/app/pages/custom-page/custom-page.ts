@@ -1,5 +1,8 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { ToggleCasePipe } from '../../pipes/toggle-case.pipe';
+import { heroes } from '../../data/heroes.data';
+import { Hero, Color, Creator } from '../../interfaces/hero.interface';
+
 
 @Component({
   selector: 'app-custom-page',
@@ -15,9 +18,13 @@ export default class CustomPage {
 
   upperCase = signal(true);
 
+  heroes = signal(heroes);
+
   toggleCase() {
     this.upperCase.update(upper => !upper);
   }
+
+
 
 
 }
