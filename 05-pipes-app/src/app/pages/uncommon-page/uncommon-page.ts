@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, signal, ɵdefaultKeyValueDiffers } from '@angular/core';
 import { Card } from "../../components/card/card";
 import { AsyncPipe, I18nPluralPipe, I18nSelectPipe, JsonPipe, KeyValuePipe, SlicePipe, TitleCasePipe, UpperCasePipe } from '@angular/common';
+import { interval, map, tap } from 'rxjs';
 
 const client1 = {
   name: 'Miguel Angel',
@@ -88,5 +89,14 @@ export default class UncommonPage {
       console.log('Promesa finalizada');
     }, 3500);
   });
+
+
+  //Observable
+
+  myObservableTimer = interval(1000).pipe(
+    map((value) => value+1),
+    tap((value) => console.log('tap', value))
+  );
+
 
 }
