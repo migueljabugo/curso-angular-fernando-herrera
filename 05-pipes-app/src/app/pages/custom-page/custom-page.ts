@@ -13,5 +13,11 @@ export default class CustomPage {
 
   name = signal('MIguel Angel');
 
+  upperCase = signal(true);
+
+  toggleCase() {
+    this.upperCase.update(upper => !upper);
+  }
+
 
 }

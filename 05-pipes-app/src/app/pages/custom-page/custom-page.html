@@ -4,10 +4,14 @@
 </section>
 
 
-<div class="stats shadow">
+<div class="stats shadow min-w-80">
   <div class="stat">
     <div class="stat-title">ToggleCase Pipe</div>
-    <div class="stat-value">{{name() | toggleCase}}</div>
+    <div class="stat-value">{{name() | toggleCase:upperCase()}}</div>
     <div class="stat-desc">{{name()}}</div>
+
+    <button class="btn btn-primary mt-2" (click)="toggleCase()">
+      Toggle
+    </button>
   </div>
 </div>
