@@ -27,14 +27,17 @@
         <div class="col-sm-9">
 
             <div class="input-group">
-                <input class="form-control"
-                       placeholder="Agregar favorito"
-                       [formControl]="newFavorite"
-                       (keydown.enter)="addFavorite()">
+                <input
+                  class="form-control"
+                  placeholder="Agregar favorito"
+                  [formControl]="newFavorite"
+                  (keydown.enter)="addFavorite()"
+                  (keydown.enter)="$event.preventDefault()">
 
-
-                <button class="btn btn-outline-primary"
-                        type="button">
+                <button
+                  class="btn btn-outline-primary"
+                  type="button"
+                  (click)="addFavorite()">
                     Agregar favorito
                 </button>
             </div>
