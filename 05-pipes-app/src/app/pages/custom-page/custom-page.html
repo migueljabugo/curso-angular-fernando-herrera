@@ -58,7 +58,8 @@
             {{hero.name}}
           </td>
           <td>
-            <span class="text-xs w-44"
+            <span
+              class="text-xs w-44"
               [class.text-success]="hero.canFly"
               [class.text-error]="!hero.canFly"
             >
@@ -66,10 +67,16 @@
             </span>
           </td>
           <td>
-            {{hero.color}}
+            <span
+              class="text-xs w-44">
+              {{hero.color | heroColor }}
+            </span>
           </td>
           <td>
-            {{hero.creator}}
+            <span
+              class="text-xs w-44">
+              {{hero.creator}}
+            </span>
           </td>
         </tr>
       }
