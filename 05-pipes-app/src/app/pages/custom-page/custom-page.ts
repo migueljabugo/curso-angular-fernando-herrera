@@ -8,6 +8,7 @@ import { HeroTextColorPipe } from '../../pipes/heroTextColor-pipe';
 import { TitleCasePipe } from '@angular/common';
 import { HeroCreatorPipe } from '../../pipes/hero-creator.pipe';
 import { HeroSortByPipe } from '../../pipes/hero-sort-by-pipe';
+import { HeroFilterPipe } from '../../pipes/hero-filter.pipe';
 
 
 @Component({
@@ -19,7 +20,8 @@ import { HeroSortByPipe } from '../../pipes/hero-sort-by-pipe';
     HeroTextColorPipe,
     HeroCreatorPipe,
     TitleCasePipe,
-    HeroSortByPipe
+    HeroSortByPipe,
+    HeroFilterPipe
   ],
   templateUrl: './custom-page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -33,6 +35,9 @@ export default class CustomPage {
   heroes = signal(heroes);
 
   sortBy = signal<keyof Hero | null>(null);
+
+  searchQuery = signal('');
+
 
 
 
