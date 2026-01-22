@@ -4,6 +4,7 @@ import { heroes } from '../../data/heroes.data';
 import { Hero, Color, Creator } from '../../interfaces/hero.interface';
 import { CanFlyPipe } from '../../pipes/canFly.pipe';
 import { HeroColorPipe } from '../../pipes/heroColor.pipe';
+import { HeroTextColorPipe } from '../../pipes/heroTextColor-pipe';
 
 
 @Component({
@@ -11,7 +12,8 @@ import { HeroColorPipe } from '../../pipes/heroColor.pipe';
   imports: [
     ToggleCasePipe,
     CanFlyPipe,
-    HeroColorPipe
+    HeroColorPipe,
+    HeroTextColorPipe
   ],
   templateUrl: './custom-page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
