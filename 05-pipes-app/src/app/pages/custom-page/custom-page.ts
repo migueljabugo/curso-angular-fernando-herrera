@@ -5,6 +5,8 @@ import { Hero, Color, Creator } from '../../interfaces/hero.interface';
 import { CanFlyPipe } from '../../pipes/canFly.pipe';
 import { HeroColorPipe } from '../../pipes/heroColor.pipe';
 import { HeroTextColorPipe } from '../../pipes/heroTextColor-pipe';
+import { TitleCasePipe } from '@angular/common';
+import { HeroCreatorPipe } from '../../pipes/hero-creator.pipe';
 
 
 @Component({
@@ -13,7 +15,9 @@ import { HeroTextColorPipe } from '../../pipes/heroTextColor-pipe';
     ToggleCasePipe,
     CanFlyPipe,
     HeroColorPipe,
-    HeroTextColorPipe
+    HeroTextColorPipe,
+    HeroCreatorPipe,
+    TitleCasePipe
   ],
   templateUrl: './custom-page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
