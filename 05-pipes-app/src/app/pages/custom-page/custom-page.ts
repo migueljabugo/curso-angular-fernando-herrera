@@ -7,6 +7,7 @@ import { HeroColorPipe } from '../../pipes/heroColor.pipe';
 import { HeroTextColorPipe } from '../../pipes/heroTextColor-pipe';
 import { TitleCasePipe } from '@angular/common';
 import { HeroCreatorPipe } from '../../pipes/hero-creator.pipe';
+import { HeroSortByPipe } from '../../pipes/hero-sort-by-pipe';
 
 
 @Component({
@@ -17,7 +18,8 @@ import { HeroCreatorPipe } from '../../pipes/hero-creator.pipe';
     HeroColorPipe,
     HeroTextColorPipe,
     HeroCreatorPipe,
-    TitleCasePipe
+    TitleCasePipe,
+    HeroSortByPipe
   ],
   templateUrl: './custom-page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -29,6 +31,10 @@ export default class CustomPage {
   upperCase = signal(true);
 
   heroes = signal(heroes);
+
+  sortBy = signal<keyof Hero | null>(null);
+
+
 
   toggleCase() {
     this.upperCase.update(upper => !upper);
