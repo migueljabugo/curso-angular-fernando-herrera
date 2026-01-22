@@ -2,12 +2,14 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { ToggleCasePipe } from '../../pipes/toggle-case.pipe';
 import { heroes } from '../../data/heroes.data';
 import { Hero, Color, Creator } from '../../interfaces/hero.interface';
+import { CanFlyPipe } from '../../pipes/canFly.pipe';
 
 
 @Component({
   selector: 'app-custom-page',
   imports: [
-    ToggleCasePipe
+    ToggleCasePipe,
+    CanFlyPipe
   ],
   templateUrl: './custom-page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
