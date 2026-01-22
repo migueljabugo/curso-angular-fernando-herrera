@@ -14,7 +14,7 @@ export class BasicPage {
 
   private formBuilder = inject(FormBuilder);
 
-  myForm = this.formBuilder.group({
+  myForm: FormGroup = this.formBuilder.group({
     //name: ['', /** Validadores síncronos */, /** Validadores asíncronos */],
     name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)] ],
     price: [0, [Validators.required, Validators.min(10)] ],
@@ -22,7 +22,31 @@ export class BasicPage {
   });
 
 
+  isValidField(fieldName: string): boolean | null {
+    return !! this.myForm.controls[fieldName].errors;
+  }
 
+  getFieldError(fieldName: string): string | null {
+    if (!this.myForm.controls[fieldName]) return null;
+
+    const errors = this.myForm.controls[fieldName].errors ?? {};
+
+    for (const errorName of Object.keys(errors)) {
+      console.log(errorName)
+      switch (errorName) {
+        case 'required':
+          return 'Este campo es requerido';
+
+        case 'minlength':
+          return `Mínimo ${errors['minlength'].requiredLength} caracteres`;
+
+        case 'maxlength':
+          return `Máximo ${errors['maxlength'].requiredLength} caracteres`;
+
+      }
+    }
+    return null;
+  }
 
 
 //  myForm = new FormGroup({
