@@ -50,5 +50,7 @@ export class DynamicPage {
 
 
 
-
+  onSave() {
+    this.myForm.markAllAsTouched();
+  }
  }

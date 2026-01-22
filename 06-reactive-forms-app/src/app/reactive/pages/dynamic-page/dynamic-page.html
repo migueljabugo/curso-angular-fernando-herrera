@@ -50,7 +50,7 @@
             <div class="mb-1" formArrayName="favoriteGames">
 
               @for (item of favoriteGames.controls; track $index; let i = $index) {
-                <div class="input-group">
+                <div class="input-group mb-1">
                     <input class="form-control"
                       [formControlName]="i">
 
@@ -64,13 +64,17 @@
                   <span class="form-text text-danger">
                     {{ formUtils.getFieldErrorInArray(favoriteGames, i) }}
                   </span>
-
                 }
 
               }
 
             </div>
 
+            @if (formUtils.isValidField(myForm, 'favoriteGames')) {
+              <span class="form-text text-danger">
+                Al menos debe incluir 2 juegos
+              </span>
+            }
         </div>
     </div>
 
@@ -78,10 +82,11 @@
 
     <div class="row">
         <div class="col-sm-12">
-            <button type="submit"
-                    class="btn btn-primary float-end"
-                    >
-                    <!-- [disabled]="myForm.invalid" -->
+            <button
+              type="submit"
+              class="btn btn-primary float-end"
+              (click)="onSave()">
+              <!--[disabled]="myForm.invalid"-->
                 Guardar
             </button>
         </div>
@@ -101,5 +106,5 @@
 <br>
 
 <span>Agregar Juego</span>
-<!--<pre>{{ 'object' | json }}</pre>-->
-<!--<pre>{{ 'object' | json }}</pre>-->
+<pre>{{ myForm.controls['favoriteGames'].errors | json }}</pre>
+<pre>{{ myForm.controls['favoriteGames'].value | json }}</pre>
