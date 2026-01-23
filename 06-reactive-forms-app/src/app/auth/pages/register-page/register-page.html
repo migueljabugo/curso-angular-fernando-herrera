@@ -19,8 +19,8 @@
                            formControlName="name">
                   @if (formUtils.isValidField(myForm, 'name')) {
                     <span class="form-text text-danger">
-                      {{ formUtils.getFieldError(myForm, 'name') }}
-                        <!--Debe de ser en formato de nombre y apellido-->
+                      Debe de ser en formato de nombre y apellido
+                      <!--{{ formUtils.getFieldError(myForm, 'name') }}-->
                     </span>
                   }
 
@@ -37,7 +37,7 @@
                            formControlName="email">
                     @if (formUtils.isValidField(myForm, 'email')) {
                       <span class="form-text text-danger">
-
+                        <!--Debe ser un email con formato válido-->
                       {{ formUtils.getFieldError(myForm, 'email') }}
                           <!--mensaje de error del email-->
                       </span>
