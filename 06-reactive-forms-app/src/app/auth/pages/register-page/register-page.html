@@ -19,7 +19,8 @@
                            formControlName="name">
                   @if (formUtils.isValidField(myForm, 'name')) {
                     <span class="form-text text-danger">
-                        Debe de ser en formato de nombre y apellido
+                      {{ formUtils.getFieldError(myForm, 'name') }}
+                        <!--Debe de ser en formato de nombre y apellido-->
                     </span>
                   }
 
@@ -36,7 +37,9 @@
                            formControlName="email">
                     @if (formUtils.isValidField(myForm, 'email')) {
                       <span class="form-text text-danger">
-                          mensaje de error del email
+
+                      {{ formUtils.getFieldError(myForm, 'email') }}
+                          <!--mensaje de error del email-->
                       </span>
                     }
 
@@ -54,7 +57,9 @@
 
                     @if (formUtils.isValidField(myForm, 'username')) {
                       <span class="form-text text-danger">
-                         El username no puede ser Strider
+
+                      {{ formUtils.getFieldError(myForm, 'username') }}
+                         <!--El username no puede ser Strider-->
                       </span>
                     }
                 </div>
@@ -70,7 +75,9 @@
                            formControlName="password">
                     @if (formUtils.isValidField(myForm, 'password')) {
                       <span class="form-text text-danger">
-                          La contraseña debe de ser mayor de 6 caracteres.
+
+                      {{ formUtils.getFieldError(myForm, 'password') }}
+                          <!--La contraseña debe de ser mayor de 6 caracteres.-->
                       </span>
                     }
                 </div>
@@ -86,7 +93,9 @@
                            formControlName="password2">
                     @if (formUtils.isValidField(myForm, 'password2')) {
                       <span class="form-text text-danger">
-                          Las contraseñas deben de ser iguales
+
+                      {{ formUtils.getFieldError(myForm, 'password2') }}
+                        <!--Las contraseñas deben de ser iguales-->
                       </span>
                     }
                 </div>
@@ -113,6 +122,9 @@
 <h2>Form Pending: {{myForm.pending}}</h2>
 <h2>Form errors</h2>
 <pre>{{ myForm.errors| json }}</pre>
+
+<h2>Form value</h2>
+<pre>{{ myForm.value | json }}</pre>
 
 <h5>Nombre</h5>
 <pre>{{ myForm.controls.name.errors | json }}</pre>

@@ -18,6 +18,8 @@ export class FormUtils {
         case 'min':
           return `Mínimo ${errors['min'].min} caracteres`;
 
+        case 'email':
+          return `El valor no tiene formato de correo electrónico`;
       }
     }
 
