@@ -44,6 +44,9 @@ export class FormUtils {
         case 'emailTaken':
           return 'El email ya está en uso';
 
+        case 'notStrider':
+          return 'El nombre de usuario no puede ser "strider"';
+
         default:
           return `Error de validación no controlado '${errorName}'`;
       }
@@ -104,6 +107,17 @@ export class FormUtils {
     }
 
     return null;
+  }
+
+
+  static notStrider(control: AbstractControl): ValidationErrors | null {
+
+    const formValue = control.value;
+
+    return (formValue.toLowerCase() === 'strider')
+            ? { notStrider: true  }
+            : null;
+
   }
 
 }

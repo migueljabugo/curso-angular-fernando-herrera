@@ -30,7 +30,7 @@ export class RegisterPage {
     ],
     username: [
       '',
-      [Validators.required, Validators.minLength(3), Validators.pattern(FormUtils.notOnlySpacesPattern)]
+      [Validators.required, Validators.minLength(3), Validators.pattern(FormUtils.notOnlySpacesPattern), FormUtils.notStrider]
     ],
     password: [
       '',
