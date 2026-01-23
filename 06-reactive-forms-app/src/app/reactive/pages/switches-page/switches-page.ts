@@ -34,7 +34,7 @@ export class SwitchesPage {
 
 
 
-  onSubmint(){
+  onSubmit(){
     this.myForm.markAllAsTouched();
     console.log(this.myForm.value);
   }
