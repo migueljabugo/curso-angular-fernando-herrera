@@ -1,7 +1,8 @@
 import { JsonPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormUtils } from '../../../utils/form-utils';
+import { form } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-register-page',
@@ -23,6 +24,10 @@ export class RegisterPage {
     username: ['', [Validators.required, Validators.minLength(3), Validators.pattern(FormUtils.notOnlySpacesPattern)]],
     password: ['', [Validators.required, Validators.minLength(3)]],
     password2: ['', Validators.required],
+  },{
+    validators: [
+      FormUtils.isFieldOneEqualToFieldTwo('password', 'password2')
+    ]
   });
 
 
