@@ -1,5 +1,14 @@
 import { AbstractControl, FormArray, FormGroup, ValidationErrors } from "@angular/forms";
 
+async function sleep() {
+  return new Promise( resolve => {
+    setTimeout(() => {
+      resolve(true);
+    }, 2000)
+
+  });
+}
+
 export class FormUtils {
 
   // Expresiones regulares
@@ -31,6 +40,9 @@ export class FormUtils {
             return `Debe ser un email con formato válido`;
           }
           return 'Error contra expresión regular';
+
+        case 'emailTaken':
+          return 'El email ya está en uso';
 
         default:
           return `Error de validación no controlado '${errorName}'`;
@@ -77,7 +89,21 @@ export class FormUtils {
         ? null
         : { notEqual: true  };
     }
+  }
 
+
+  static async checkingServerResponse(control: AbstractControl): Promise<ValidationErrors | null> {
+
+    console.log('Checking server response...');
+    await sleep();
+
+    const formValue = control.value;
+
+    if (formValue === 'hola@mundo.com') {
+      return { emailTaken: true  };
+    }
+
+    return null;
   }
 
 }
