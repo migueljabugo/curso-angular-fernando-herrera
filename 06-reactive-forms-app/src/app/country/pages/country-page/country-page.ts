@@ -14,9 +14,12 @@ import { CountryService } from '../../services/country.service';
 export class CountryPage {
 
   fb = inject(FormBuilder);
-  CountryService = inject(CountryService);
+  countryService = inject(CountryService);
 
-  regions = signal(this.CountryService.regions);
+  regions = signal(this.countryService.regions);
+  countriesByRegion = signal<string[]>([]);
+  bordersByCountry = signal<string[]>([]);
+
 
   myForm = this.fb.group({
     region: ['', Validators.required],

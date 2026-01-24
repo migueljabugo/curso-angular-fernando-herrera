@@ -10,7 +10,6 @@
         <option value="">-- Seleccione Continente --</option>
 
         @for (region of regions(); track region) {
-
           <option [value]="region">
             {{ region }}
           </option>
@@ -60,4 +59,4 @@
   <!-- {{ 'myForm.value' | json }} -->
 </code>
 <p>is form valid: {{ myForm.valid | json }}</p>
-<p>is form valid: {{ myForm.valid | json }}</p>
+<p>is form valid: {{ myForm.value | json }}</p>
