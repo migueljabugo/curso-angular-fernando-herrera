@@ -1,4 +1,5 @@
 import { afterEveryRender, afterNextRender, ChangeDetectionStrategy, Component, effect, signal } from '@angular/core';
+import { Title } from '../../components/title/title';
 
 const log = (...messages: string[]) => {
   console.log(`${messages[0]} %c${messages.slice(1).join(', ')}`,
@@ -7,7 +8,9 @@ const log = (...messages: string[]) => {
 
 @Component({
   selector: 'app-home-page',
-  imports: [],
+  imports: [
+    Title
+  ],
   templateUrl: './home-page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -19,9 +22,9 @@ export class HomePage {
   constructor() {
     log('Constructor');
 
-    setTimeout(() => {
-      this.signalProperty.set('Miguel Angel ' + Math.random());
-    }, 2000);
+  //  setTimeout(() => {
+  //    this.signalProperty.set('Miguel Angel ' + Math.random());
+  //  }, 2000);
   }
 
   changeTradicional(){
