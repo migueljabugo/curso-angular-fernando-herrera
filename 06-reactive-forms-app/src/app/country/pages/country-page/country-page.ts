@@ -21,6 +21,7 @@ export class CountryPage {
   regions = signal(this.countryService.regions);
   countriesByRegion = signal<Country[]>([]);
   bordersByCountry = signal<string[]>([]);
+  borders = signal<Country[]>([]);
 
 
   myForm = this.fb.group({
@@ -69,8 +70,7 @@ export class CountryPage {
         switchMap(country => this.countryService.getCountryNamesByCodeArray(country?.borders))
       )
       .subscribe((borders) => {
-        //this.bordersByCountry.set(borders.map(country => country.name.common));
-        console.log({borders});
+        this.borders.set(borders);
       });
 
   }
