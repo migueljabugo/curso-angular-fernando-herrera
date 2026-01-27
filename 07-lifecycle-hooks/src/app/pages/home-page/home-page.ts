@@ -1,4 +1,4 @@
-import { afterEveryRender, afterNextRender, ChangeDetectionStrategy, Component, effect } from '@angular/core';
+import { afterEveryRender, afterNextRender, ChangeDetectionStrategy, Component, effect, signal } from '@angular/core';
 
 const log = (...messages: string[]) => {
   console.log(`${messages[0]} %c${messages.slice(1).join(', ')}`,
@@ -13,9 +13,25 @@ const log = (...messages: string[]) => {
 })
 export class HomePage {
 
+  tradicionalProperty = 'Miguel Angel';
+  signalProperty = signal('Miguel Angel');
+
   constructor() {
     log('Constructor');
+
+    setTimeout(() => {
+      this.signalProperty.set('Miguel Angel ' + Math.random());
+    }, 2000);
   }
+
+  changeTradicional(){
+    this.tradicionalProperty = 'Miguel Angel Gonzalez';
+  }
+
+  changeSignal(){
+    this.signalProperty.set('Miguel Angel ' + Math.random())
+  }
+
 
   basicEffect =  effect(( onCleanup )=> {
     log('effect', 'Disparare efectos secundarios');
