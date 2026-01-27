@@ -2,7 +2,7 @@ import { JsonPipe } from '@angular/common';
 import { Component, effect, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CountryService } from '../../services/country.service';
-import { switchMap, tap } from 'rxjs';
+import { filter, switchMap, tap } from 'rxjs';
 import { Country } from '../../interfaces/country.interfaces';
 
 @Component({
@@ -31,8 +31,11 @@ export class CountryPage {
 
   onFormChanged = effect((onCleanup) => {
     const regionSubscription = this.onRegionChanged();
+    const countrySubscription = this.onCountryChanged();
+
     onCleanup(() => {
       regionSubscription.unsubscribe();
+      countrySubscription.unsubscribe();
     });
   });
 
@@ -53,6 +56,24 @@ export class CountryPage {
       });
   }
 
+  onCountryChanged(){
+
+    return this.myForm
+      .get('country')!
+      .valueChanges
+      .pipe(
+        tap(() => {this.myForm.get('border')!.setValue('');}),
+        //tap(() => {this.bordersByCountry.set([]);}),
+        filter(value => value!.length > 0),
+        switchMap(alphaCode => this.countryService.getCountryByAlphaCode(alphaCode ?? '')),
+        switchMap(country => this.countryService.getCountryNamesByCodeArray(country?.borders))
+      )
+      .subscribe((borders) => {
+        //this.bordersByCountry.set(borders.map(country => country.name.common));
+        console.log({borders});
+      });
+
+  }
 
 
  }
