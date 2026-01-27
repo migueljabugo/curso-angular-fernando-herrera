@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { afterEveryRender, afterNextRender, ChangeDetectionStrategy, Component, effect } from '@angular/core';
 
 const log = (...messages: string[]) => {
   console.log(`${messages[0]} %c${messages.slice(1).join(', ')}`,
@@ -16,6 +16,14 @@ export class HomePage {
   constructor() {
     log('Constructor');
   }
+
+  basicEffect =  effect(( onCleanup )=> {
+    log('effect', 'Disparare efectos secundarios');
+
+    onCleanup(() => {
+      log('onCleanup', 'Cuando el efecto se va a destruir');
+    });
+  });
 
   ngOnInit() {
     log('ngOnInit', "Runs once after Angular has initialized all the component's inputs.");
@@ -44,5 +52,19 @@ export class HomePage {
   ngAfterViewChecked() {
     log('ngAfterViewChecked', "Runs every time the component's view has been checked for changes.");
   }
+
+  ngOnDestroy() {
+    log('ngOnDestroy', "Runs once before the component is destroyed.");
+  }
+
+  afterNextRenderEffect = afterNextRender(() => {
+    log("afterNextRender", "Runs once the next time that all components have been rendered to the DOM.");
+  });
+
+  afterEveryRenderEffect = afterEveryRender(() => {
+    log("afterEveryRender", "Runs every time all components have been rendered to the DOM.");
+  });
+
+
 
 }
