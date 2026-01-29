@@ -3,12 +3,14 @@ import { rxResource } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { ProductImgaePipe } from '@products/pipes/product-images.pipe';
 import { ProductsService } from '@products/services/products.service';
+import { ProductCarousel } from "@products/components/product-carousel/product-carousel";
 
 @Component({
   selector: 'app-product-page',
   imports: [
-    ProductImgaePipe
-  ],
+    ProductImgaePipe,
+    ProductCarousel
+],
   templateUrl: './product-page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
