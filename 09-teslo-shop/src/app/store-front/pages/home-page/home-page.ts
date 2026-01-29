@@ -1,6 +1,8 @@
 
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ProductsService } from '@products/services/products.service';
 import { ProductCard } from '@store-front/components/product-card/product-card';
+import { rxResource } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-home-page',
@@ -10,4 +12,16 @@ import { ProductCard } from '@store-front/components/product-card/product-card';
   templateUrl: './home-page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomePage { }
+export class HomePage {
+
+  productsService = inject(ProductsService);
+
+  productResource = rxResource({
+    params: () => ({}),
+    stream: ({params}) => {
+      return this.productsService.getProducts();
+    }
+  });
+
+
+ }
