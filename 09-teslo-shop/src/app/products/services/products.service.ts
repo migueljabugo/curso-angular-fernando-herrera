@@ -21,6 +21,7 @@ export class ProductsService {
   //Fernando recomienda utilizar la cache con TanStack Query
   //https://tanstack.com/query/latest
   private productsCache = new Map<string, ProductsResponse>();
+  private productCache = new Map<string, Product>();
 
   getProducts(options: Options= {}): Observable<ProductsResponse> {
 
@@ -50,6 +51,17 @@ export class ProductsService {
 
   getProductByIdSlug(idSlug: string): Observable<Product> {
 
-    return this.http.get<Product>(`${baseUrl}/products/${idSlug}`);
+    const key = `p-${idSlug}`;
+
+    if (this.productCache.has(key)) {
+      return of(this.productCache.get(key)!);
+    }
+
+
+    return this.http.get<Product>(`${baseUrl}/products/${idSlug}`)
+    .pipe(
+      tap(response => console.log(response)),
+      tap((product) => this.productCache.set(key, product))
+    );
   }
 }
