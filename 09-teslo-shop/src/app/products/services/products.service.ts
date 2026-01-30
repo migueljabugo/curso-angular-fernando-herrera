@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Product, ProductsResponse } from '../interfaces/product.interface';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 
@@ -18,9 +18,19 @@ export class ProductsService {
 
   private http = inject(HttpClient);
 
+  //Fernando recomienda utilizar la cache con TanStack Query
+  //https://tanstack.com/query/latest
+  private productsCache = new Map<string, ProductsResponse>();
+
   getProducts(options: Options= {}): Observable<ProductsResponse> {
 
     const { limit = 9, offset = 0, gender = '' } = options;
+
+    const key = `${limit}-${offset}-${gender}`;
+
+    if (this.productsCache.has(key)) {
+      return of(this.productsCache.get(key)!);
+    }
 
     return this.http.get<ProductsResponse>(`${baseUrl}/products`,
       {
@@ -32,7 +42,8 @@ export class ProductsService {
       }
     )
     .pipe(
-      tap(response => console.log(response))
+      //tap(response => console.log(response)),
+      tap((response) => this.productsCache.set(key, response))
     );
   }
 
