@@ -57,7 +57,8 @@
   <div class="navbar-end gap-4">
     @if(authservice.authStatus() === 'authenticated'){
 
-      <button class="btn btn-ghost">
+      <button class="btn btn-ghost"
+        routerLink="/admin">
         {{authservice.user()?.fullName}}
       </button>
 
