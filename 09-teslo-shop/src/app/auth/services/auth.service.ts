@@ -44,19 +44,9 @@ export class AuthService {
       email: email,
       password: password
     }).pipe(
-      tap(({user, token}) => {
-        this._user.set(user);
-        this._token.set(token);
-        this._authStatus.set('authenticated');
-
-        localStorage.setItem('token', token);
-      }),
-      map(resp => true),
+      map((resp) => this.handleAuthSuccess(resp)),
       catchError((error) => {
-        this._authStatus.set('not-authenticated');
-        this._user.set(null);
-        this._token.set(null);
-        return of(false);
+        return this.handleAuthError(error);
       })
     );
   }
@@ -66,6 +56,7 @@ export class AuthService {
     const token = localStorage.getItem('token');
 
     if(!token){
+      this.logout();
       return of(false);
     }
 
@@ -74,21 +65,32 @@ export class AuthService {
         Authorization: `Bearer ${token}`
       }
     }).pipe(
-      tap(({user, token}) => {
-        this._user.set(user);
-        this._token.set(token);
-        this._authStatus.set('authenticated');
-
-        localStorage.setItem('token', token);
-      }),
-      map(resp => true),
+      map((resp) => this.handleAuthSuccess(resp)),
       catchError((error) => {
-        this._authStatus.set('not-authenticated');
-        this._user.set(null);
-        this._token.set(null);
-        return of(false);
+        return this.handleAuthError(error);
       })
     );
   }
 
+  logout(){
+    this._user.set(null);
+    this._token.set(null);
+    this._authStatus.set('not-authenticated');
+
+    localStorage.removeItem('token');
+  }
+
+  private handleAuthSuccess({ token, user }: AuthResponse) {
+    this._user.set(user);
+    this._token.set(token);
+    this._authStatus.set('authenticated');
+
+    localStorage.setItem('token', token);
+    return true;
+  }
+
+  private handleAuthError(error: any) {
+    this.logout();
+    return of(false);
+  }
 }
