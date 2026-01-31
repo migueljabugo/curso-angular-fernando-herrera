@@ -60,7 +60,7 @@ export class ProductsService {
 
     return this.http.get<Product>(`${baseUrl}/products/${idSlug}`)
     .pipe(
-      tap(response => console.log(response)),
+      //tap(response => console.log(response)),
       tap((product) => this.productCache.set(key, product))
     );
   }
