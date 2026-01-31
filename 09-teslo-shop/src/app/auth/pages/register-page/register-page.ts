@@ -1,9 +1,56 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '@auth/services/auth.service';
 
 @Component({
   selector: 'app-register-page',
-  imports: [],
+  imports: [
+    ReactiveFormsModule
+  ],
   templateUrl: './register-page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RegisterPage { }
+export class RegisterPage {
+
+  fb = inject(FormBuilder);
+  hasError = signal(false);
+  isPositing = signal(false);
+  router = inject(Router);
+
+  authService = inject(AuthService);
+
+
+  registerForm = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+    fullName: ['', [Validators.required, Validators.minLength(3)]]
+  });
+
+  onSubmit() {
+
+    if(this.registerForm.invalid){
+      this.hasError.set(true);
+      setTimeout(() => {
+        this.hasError.set(false);
+      }, 2000);
+      return;
+    }
+
+    const { email = '', password = '', fullName = '' } = this.registerForm.value;
+
+    console.log(email, password);
+    this.authService.register(email!, password!, fullName!).subscribe(isAuthenticated => {
+      if (isAuthenticated){
+        this.router.navigateByUrl('/');
+        return;
+      }
+
+      this.hasError.set(true);
+      setTimeout(() => {
+        this.hasError.set(false);
+      }, 2000);
+    });
+
+  }
+}
