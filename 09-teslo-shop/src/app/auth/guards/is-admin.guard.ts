@@ -1,17 +1,15 @@
 import { inject } from '@angular/core';
 import { CanMatchFn, Route, Router, UrlSegment } from '@angular/router';
 import { AuthService } from '@auth/services/auth.service';
+import { first, firstValueFrom } from 'rxjs';
 
-export const IsAdminGuard: CanMatchFn = (
+export const IsAdminGuard: CanMatchFn = async (
   route: Route,
   segments: UrlSegment[]
 ) => {
   const authService = inject(AuthService);
-  const router = inject(Router);
 
-  authService.user()?.roles.includes('admin')
-    ? true
-    : router.navigateByUrl('/');
+  await firstValueFrom(authService.checkStatus());
 
-  return true;
+  return authService.isAdmin();
 }
