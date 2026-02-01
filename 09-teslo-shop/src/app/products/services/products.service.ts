@@ -64,4 +64,20 @@ export class ProductsService {
       tap((product) => this.productCache.set(key, product))
     );
   }
+
+  getProductById(id: string): Observable<Product> {
+
+    const key = `p-${id}`;
+
+    if (this.productCache.has(key)) {
+      return of(this.productCache.get(key)!);
+    }
+
+
+    return this.http.get<Product>(`${baseUrl}/products/${id}`)
+    .pipe(
+      //tap(response => console.log(response)),
+      tap((product) => this.productCache.set(key, product))
+    );
+  }
 }
