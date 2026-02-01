@@ -5,8 +5,7 @@
 }
 
 @if(productResource.hasValue()) {
-  <h1>{{productId()}}</h1>
 
-
+  <product-details [product]="productResource.value()"/>
 
 }
