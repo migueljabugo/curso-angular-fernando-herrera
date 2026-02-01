@@ -72,7 +72,11 @@ export class ProductDetails implements OnInit {
     };
 
 
-    this.productService.updateProduct(productLike);
+    this.productService.updateProduct(this.product().id, productLike).subscribe(
+      prodcuto => {
+        console.log('Producto Actualizado')
+      }
+    );
   }
 
 
