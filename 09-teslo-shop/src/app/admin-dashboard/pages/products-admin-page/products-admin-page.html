@@ -7,6 +7,10 @@
 
 <div class="divider"></div>
 
+<app-pagination
+    [pages]="productResource.value()?.pages ?? 0"
+    [currentPage]="pagintaionSErvice.currentPage()"
+    />
 
-<product-table [products]="[]" />
+<product-table [products]="productResource.value()?.products ?? []" />
 

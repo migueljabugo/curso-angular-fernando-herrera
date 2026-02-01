@@ -1,10 +1,31 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { rxResource } from '@angular/core/rxjs-interop';
 import { ProductTable } from "@products/components/product-table/product-table";
+import { ProductsService } from '@products/services/products.service';
+import { PaginationService } from '@shared//components/pagination/pagination.service';
+import { Pagination } from "@shared//components/pagination/pagination";
 
 @Component({
   selector: 'app-products-admin-page',
-  imports: [ProductTable],
+  imports: [
+    ProductTable,
+    Pagination
+  ],
   templateUrl: './products-admin-page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductsAdminPage { }
+export class ProductsAdminPage {
+
+  productsService = inject(ProductsService);
+
+  pagintaionSErvice = inject(PaginationService);
+
+  productResource = rxResource({
+    params: () => ({page: this.pagintaionSErvice.currentPage() - 1}),
+    stream: ({params}) => {
+      return this.productsService.getProducts({
+        offset: params.page * 9
+      });
+    }
+  });
+}
