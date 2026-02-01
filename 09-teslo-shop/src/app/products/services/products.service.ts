@@ -80,4 +80,8 @@ export class ProductsService {
       tap((product) => this.productCache.set(key, product))
     );
   }
+
+  updateProduct(productLike: Partial<Product>){
+    console.log('Actualizando producto')
+  }
 }
