@@ -55,10 +55,17 @@
     </ul>
   </div>
   <div class="navbar-end gap-4">
+
+    @if(authservice.isAdmin()){
+      <a routerLink="/admin"
+        class="text-accent">
+        Panel de administración
+      </a>
+    }
+
     @if(authservice.authStatus() === 'authenticated'){
 
-      <button class="btn btn-ghost"
-        routerLink="/admin">
+      <button class="btn btn-ghost">
         {{authservice.user()?.fullName}}
       </button>
 
