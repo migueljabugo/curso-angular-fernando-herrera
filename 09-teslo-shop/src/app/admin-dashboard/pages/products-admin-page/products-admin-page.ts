@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { ProductTable } from "@products/components/product-table/product-table";
 import { ProductsService } from '@products/services/products.service';
@@ -17,14 +17,17 @@ import { Pagination } from "@shared//components/pagination/pagination";
 export class ProductsAdminPage {
 
   productsService = inject(ProductsService);
-
   pagintaionSErvice = inject(PaginationService);
+
+  productsPerPage = signal(10);
+
 
   productResource = rxResource({
     params: () => ({page: this.pagintaionSErvice.currentPage() - 1}),
     stream: ({params}) => {
       return this.productsService.getProducts({
-        offset: params.page * 9
+        offset: params.page * this.productsPerPage(),
+        limit: this.productsPerPage()
       });
     }
   });
