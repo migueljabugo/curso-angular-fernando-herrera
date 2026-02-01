@@ -7,7 +7,11 @@ const baseUrl = environment.baseUrl;
   name: 'productImage'
 })
 export class ProductImgaePipe implements PipeTransform {
-  transform(value: string | string[]): string {
+  transform(value: null | string | string[]): string {
+
+    if (value === null) {
+      return './assets/images/no-image.jpg';
+    }
 
     if (Array.isArray(value)) {
       if (value.length === 0) {
