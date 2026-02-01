@@ -1,0 +1,28 @@
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { AbstractControl, ValidationErrors } from '@angular/forms';
+import { FormUtils } from '@utils/form-utils';
+
+@Component({
+  selector: 'form-error-label',
+  imports: [],
+  templateUrl: './form-error-label.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class FormErrorLabel {
+
+  control = input.required<AbstractControl>();
+
+  get errorMessage(){
+    const errors: ValidationErrors = this.control().errors || {};
+
+    let a = this.control().touched && Object.keys(errors).length > 0
+      ? FormUtils.getTextError(errors)
+      : null;
+
+      console.log(a);
+
+      return a;
+  }
+
+
+}
