@@ -17,8 +17,9 @@
 
 </div>
 
-
-<app-pagination
+<div class="m-5">
+  <app-pagination
     [pages]="productResource.value()?.pages ?? 0"
     [currentPage]="pagintaionSErvice.currentPage()"
     />
+</div>
