@@ -4,9 +4,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-heavy-loaders-slow',
-  imports: [
-    NgClass
-  ],
+  imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `<h1 [class]="['w-full', 'h-[600px]', cssClass()]">HeavyLoaders Slow</h1>`
 })
