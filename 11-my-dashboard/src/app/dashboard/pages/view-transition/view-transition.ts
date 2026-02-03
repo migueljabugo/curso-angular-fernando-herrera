@@ -6,4 +6,4 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   templateUrl: './view-transition.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ViewTransition { }
+export default class ViewTransition { }
