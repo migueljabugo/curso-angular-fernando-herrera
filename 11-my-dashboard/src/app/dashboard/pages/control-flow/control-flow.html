@@ -1,4 +1,4 @@
-<section class="grid grid-cols-1 md:grid-cols-2 gap-3">
+<section class="grid grid-cols-1 md:grid-cols-2 gap-3 pb-5">
 
   <div class="bg-white rounded shadow p-10">
     <h2 class="text-2xl font-bold mb-5"> if: {{ showContent() }}</h2>
@@ -17,3 +17,23 @@
 
   </div>
 </section>
+
+<section class="grid grid-cols-1 md:grid-cols-2 gap-3  pb-5">
+
+  <div class="bg-white rounded shadow p-10">
+    <h2 class="text-2xl font-bold mb-5">{{ grade() }}</h2>
+
+    @switch (grade()) {
+      @case ('A'){
+        <p>Arriba de 90</p>
+      }
+      @case ('B'){
+        <p>Arriba de 80</p>
+      }
+      @default {
+        <p>Suspenso</p>
+      }
+    }
+  </div>
+</section>
+
