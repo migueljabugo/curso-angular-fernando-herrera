@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, input, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, OnInit, signal } from '@angular/core';
 import { Product } from '@products/interfaces/product.interface';
 import { ProductCarousel } from "@products/components/product-carousel/product-carousel";
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -28,6 +28,11 @@ export class ProductDetails implements OnInit {
 
   imageFileList: FileList | undefined = undefined;
   tempImages = signal<string[]>([]);
+
+  imagesToCarouse = computed(()=>{
+    const currentProdcutImages = [...this.product().images, ...this.tempImages()];
+    return currentProdcutImages;
+  } );
 
 
   productForm = this.fb.group({

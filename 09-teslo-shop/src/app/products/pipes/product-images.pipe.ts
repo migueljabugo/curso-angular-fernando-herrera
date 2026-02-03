@@ -13,6 +13,10 @@ export class ProductImgaePipe implements PipeTransform {
       return './assets/images/no-image.jpg';
     }
 
+    if (typeof value === 'string' && value.startsWith('blob:')){
+      return value;
+    }
+
     if (Array.isArray(value)) {
       if (value.length === 0) {
         return './assets/images/no-image.jpg';
