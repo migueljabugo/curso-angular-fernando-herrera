@@ -16,9 +16,6 @@
     }
 
   </div>
-</section>
-
-<section class="grid grid-cols-1 md:grid-cols-2 gap-3  pb-5">
 
   <div class="bg-white rounded shadow p-10">
     <h2 class="text-2xl font-bold mb-5">{{ grade() }}</h2>
@@ -34,6 +31,38 @@
         <p>Suspenso</p>
       }
     }
+  </div>
+
+  <div class="bg-white rounded shadow p-10">
+
+    <ul>
+      @for (item of frameworks(); track item;
+        let i = $index,
+        first = $first,
+         last = $last,
+         even=$even,
+         odd = $odd,
+         count=$count ) {
+        <li [class]="{
+          'bg-red-100': even && !first && !last,
+          'bg-purple-100': odd && !first && !last,
+          'bg-blue-100': first || last
+        }">{{i+1}} - {{ item }}</li>
+      }
+    </ul>
+
+  </div>
+
+  <div class="bg-white rounded shadow p-10">
+
+    <ul>
+      @for (item of frameworks2(); track item; let i = $index) {
+        <li>{{ item }}</li>
+      }@empty {
+        <ul>No hay elementos</ul>
+      }
+    </ul>
+
   </div>
 </section>
 
