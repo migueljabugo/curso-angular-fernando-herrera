@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Gender, Product, ProductsResponse } from '../interfaces/product.interface';
 import { HttpClient } from '@angular/common/http';
-import { forkJoin, map, Observable, of, tap } from 'rxjs';
+import { forkJoin, map, Observable, of, pipe, switchMap, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '@auth/interfaces/user.interface';
 
@@ -100,7 +100,7 @@ export class ProductsService {
     );
   }
 
-  createProduct(productLike: Partial<Product>): Observable<Product>{
+  createProduct(productLike: Partial<Product>, imageFileList?: FileList): Observable<Product>{
 
     return this.http.post<Product>(`${baseUrl}/products`, productLike)
     .pipe(
@@ -108,10 +108,18 @@ export class ProductsService {
     );
   }
 
-  updateProduct(id:string, productLike: Partial<Product>){
+  updateProduct(id:string, productLike: Partial<Product>, imageFileList?: FileList){
 
-    return this.http.patch<Product>(`${baseUrl}/products/${id}`, productLike)
+    const currentImages = productLike.images ?? [];
+
+
+    return this.uploadImages(imageFileList)
     .pipe(
+      map( imageNames => ({
+        ...productLike,
+        images: [...currentImages, ...imageNames]
+      })),
+      switchMap(updatedProduct => this.http.patch<Product>(`${baseUrl}/products/${id}`, productLike)),
       tap((product) => this.updateProductCache(product))
     );
   }

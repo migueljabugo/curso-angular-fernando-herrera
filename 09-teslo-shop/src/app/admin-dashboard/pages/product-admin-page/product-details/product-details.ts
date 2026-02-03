@@ -87,7 +87,7 @@ export class ProductDetails implements OnInit {
 
     if(this.product().id === 'new'){
       const prodcuto = await firstValueFrom(
-        this.productService.createProduct(productLike)
+        this.productService.createProduct(productLike, this.imageFileList)
       );
 
       console.log('Producto creado', prodcuto);
@@ -98,7 +98,7 @@ export class ProductDetails implements OnInit {
     else
     {
       await firstValueFrom(
-        this.productService.updateProduct(this.product().id, productLike)
+        this.productService.updateProduct(this.product().id, productLike, this.imageFileList)
       );
 
       console.log('Producto Actualizado');
