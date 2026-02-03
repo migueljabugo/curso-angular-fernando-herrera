@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Gender, Product, ProductsResponse } from '../interfaces/product.interface';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of, tap } from 'rxjs';
+import { forkJoin, map, Observable, of, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '@auth/interfaces/user.interface';
 
@@ -137,4 +137,26 @@ export class ProductsService {
 
     console.log('Cache Actualizado');
   }
+
+  uploadImages(images?: FileList): Observable<string[]> {
+    if(!images) return of([]);
+
+    const uploadObservables = Array.from(images).map(image =>
+      this.uploadImage(image)
+    );
+
+    //Esperamos a que termien todos los observables
+    return forkJoin(uploadObservables);
+  }
+
+  uploadImage(imageFile: File): Observable<string> {
+    const formData = new FormData();
+    formData.append('file', imageFile);
+
+    return this.http.post<{fileName: string}>(`${baseUrl}/files/product`, formData)
+    .pipe(
+      map((resp) => resp.fileName)
+    );
+  }
+
 }
