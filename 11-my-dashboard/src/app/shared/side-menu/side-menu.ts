@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import Dashboard from '../../dashboard/dashboard';
 import { routes } from '../../app.routes';
 import { RouterLink, RouterLinkActive } from "@angular/router";
 

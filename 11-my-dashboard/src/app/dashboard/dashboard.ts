@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { SideMenu } from "../shared/side-menu/side-menu";
+import { SideMenu } from '@shared/side-menu/side-menu';
 
 @Component({
   selector: 'app-dashboard',
