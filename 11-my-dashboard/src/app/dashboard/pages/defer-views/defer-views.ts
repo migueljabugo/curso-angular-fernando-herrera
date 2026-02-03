@@ -1,0 +1,9 @@
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+
+@Component({
+  selector: 'app-defer-views',
+  imports: [],
+  templateUrl: './defer-views.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class DeferViews { }
