@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from "@shared/title/title";
 import { User } from '../../../interfaces/req-response';
@@ -16,6 +16,13 @@ export default class UserComponent {
 
   private route = inject(ActivatedRoute);
   private userService = inject(UserService);
+
+  public titleLabel = computed(() => {
+    let name = this.user()
+      ? `${this.user()?.first_name} ${this.user()?.last_name}`
+      : 'usuario';
+    return `Perfil de ${name}`;
+  });
 
   //public user = signal<User | undefined>(undefined)
   public user = toSignal(
