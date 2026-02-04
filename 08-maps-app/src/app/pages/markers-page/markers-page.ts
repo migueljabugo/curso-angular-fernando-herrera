@@ -2,6 +2,7 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, signal, 
 import mapboxgl from 'mapbox-gl';
 import { environment } from '../../../environments/environment';
 import { v4 as UUIDv4 } from 'uuid';
+import { JsonPipe } from '@angular/common';
 
 
 mapboxgl.accessToken = environment.mapboxKey;
@@ -13,7 +14,9 @@ interface Marker {
 
 @Component({
   selector: 'app-markers-page',
-  imports: [],
+  imports: [
+    JsonPipe
+  ],
   templateUrl: './markers-page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -87,4 +90,15 @@ export class MarkersPage implements AfterViewInit {
     console.log(this.markers());
   }
 
+
+  flyToMarker(lngLat: mapboxgl.LngLatLike) {
+    if (!this.map()) return;
+
+    this.map()?.flyTo({
+      zoom: 14,
+      center: lngLat
+    });
+
+
+  }
 }
