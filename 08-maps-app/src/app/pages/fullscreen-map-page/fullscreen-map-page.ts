@@ -92,6 +92,14 @@ export class FullscreenMapPage implements AfterViewInit {
       });
     });
 
+    map.on('load', (e)=> {
+      console.log('Mapa cargado')
+    });
+
+    map.addControl(new mapboxgl.FullscreenControl()); //Boton de maximizar
+    map.addControl(new mapboxgl.NavigationControl()); //botones de zoom y volver al norte
+    map.addControl(new mapboxgl.ScaleControl()); //Escala
+
     this.map.set(map);
   }
 
