@@ -29,7 +29,11 @@ export class MiniMap implements AfterViewInit {
       container: element, // container ID
       style: 'mapbox://styles/mapbox/streets-v12', // style URL
       center: this.lngLat(), // starting position [lng, lat]
-      zoom: 14, // starting zoom
+      zoom: 14, // starting zoom,
+      dragPan: false,
+      dragRotate: false,
+      scrollZoom: false,
+      touchZoomRotate: false
     });
 
     const color = '#xxxxxx'.replace(/x/g, (y) =>
