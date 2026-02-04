@@ -1,6 +1,7 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, signal, viewChild } from '@angular/core';
 import mapboxgl from 'mapbox-gl';
 import { environment } from '../../../environments/environment';
+import { map } from 'rxjs';
 
 mapboxgl.accessToken = environment.mapboxKey;
 
@@ -31,16 +32,16 @@ export class MarkersPage implements AfterViewInit {
       zoom: 14, // starting zoom
     });
 
-    const marker = new mapboxgl.Marker({
-      draggable: true,
-      color: '#ff0000'
-    })
-    .setLngLat([-6.729120964211328, 37.91690866444012])
-    .addTo(map);
-
-    marker.on('dragend', (e) => {
-      console.log(e.target.getLngLat());
-    });
+//    const marker = new mapboxgl.Marker({
+//      draggable: true,
+//      color: '#ff0000'
+//    })
+//    .setLngLat([-6.729120964211328, 37.91690866444012])
+//    .addTo(map);
+//
+//    marker.on('dragend', (e) => {
+//      console.log(e.target.getLngLat());
+//    });
 
 
 
@@ -48,11 +49,27 @@ export class MarkersPage implements AfterViewInit {
   }
 
   mapListeners(map: mapboxgl.Map){
+    map.on('click', (e)=> this.mapClick(e));
 
 
 
-
+    this.map.set(map);
   }
 
+  mapClick(event: mapboxgl.MapMouseEvent){
+    //console.log(event.lngLat);
+
+
+    const color = '#xxxxxx'.replace(/x/g, (y) =>
+      ((Math.random() * 16) | 0).toString(16)
+    );
+
+    const marker = new mapboxgl.Marker({
+      color: color
+    })
+    .setLngLat(event.lngLat)
+    .addTo(event.target);
+
+  }
 
 }
