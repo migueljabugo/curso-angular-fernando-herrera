@@ -1,10 +1,15 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, signal, viewChild } from '@angular/core';
 import mapboxgl from 'mapbox-gl';
 import { environment } from '../../../environments/environment';
-import { map } from 'rxjs';
+import { v4 as UUIDv4 } from 'uuid';
+
 
 mapboxgl.accessToken = environment.mapboxKey;
 
+interface Marker {
+  id:string,
+  mapboxMarker: mapboxgl.Marker
+}
 
 @Component({
   selector: 'app-markers-page',
@@ -15,6 +20,8 @@ mapboxgl.accessToken = environment.mapboxKey;
 export class MarkersPage implements AfterViewInit {
   divElement = viewChild<ElementRef>('map');
   map = signal<mapboxgl.Map | null>(null);
+  markers = signal<Marker[]>([]);
+
 
 
   async ngAfterViewInit() {
@@ -70,6 +77,14 @@ export class MarkersPage implements AfterViewInit {
     .setLngLat(event.lngLat)
     .addTo(event.target);
 
+    const newMarker: Marker = {
+      id: UUIDv4(),
+      mapboxMarker: marker
+    }
+
+    //this.markers.set([newMarker, ...this.markers()]);
+    this.markers.update((markers) =>[newMarker, ...markers]);
+    console.log(this.markers());
   }
 
 }
