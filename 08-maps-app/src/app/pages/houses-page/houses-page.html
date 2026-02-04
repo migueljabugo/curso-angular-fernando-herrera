@@ -9,7 +9,7 @@
   @for (house of houses(); track house.id; let i = $index) {
 
     <div class="card bg-base-100 w-96 shadow-sm">
-      <app-mini-map />
+      <app-mini-map [lngLat]="house.lngLat"/>
       <!--<figure>
         <img
           src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
