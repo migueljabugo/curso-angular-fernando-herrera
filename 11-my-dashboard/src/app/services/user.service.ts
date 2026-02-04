@@ -1,7 +1,7 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { User, UsersResponse } from '../interfaces/req-response';
+import { User, UserResponse, UsersResponse } from '../interfaces/req-response';
 import { HttpClient } from '@angular/common/http';
-import { delay } from 'rxjs';
+import { delay, map } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 const API_KEY = environment.reqres_in_api_key;
@@ -46,5 +46,18 @@ export class UserService {
       });
 
    }
+
+   getUserById(id: string){
+    return this.http.get<UserResponse>(`https://reqres.in/api/users/${id}`, {
+      headers: {
+        'x-api-key': API_KEY
+      }
+    })
+      .pipe(
+        delay(2000),
+        map(resp => resp.data)
+      );
+   }
+
 
 }

@@ -8,6 +8,12 @@ export interface UsersResponse {
   _meta:       Meta;
 }
 
+export interface UserResponse {
+  data:    User;
+  support: Support;
+  _meta:   Meta;
+}
+
 export interface Meta {
   powered_by:  string;
   docs_url:    string;
